@@ -17,8 +17,15 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/updateme', function(req, res) {
+    res.render('upload_profile_pic', { title: 'Express' });
+});
+
+
 /*router.post('/upload', multipartMiddleware, function(req, res) {*/
 router.post('/upload', middleware, function(req, res) {
+    // console.log(req.files.filex[0].path);
+    //fs.createWriteStream(upload_dir + 'samefile').pipe(fs.createReadStream(req.files.filex[0].path));
     res.status(200).json({ data: req.files });
     
 });

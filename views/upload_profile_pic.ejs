@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .profile {
+            display: inline-block;
+            max-width: 257px;
+            border: 1px solid red;
+            position: relative;
+        }
+        div.mask {
+            height: 304px;
+            width: 257px;
+            background-color: rgba(0,0,0,0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #fileinp {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile">
+        <div class="mask">
+            <progress max="100" value="25"></progress>
+        </div>
+        <img src="http://fc01.deviantart.net/fs71/i/2014/261/4/a/earth_2_superman__bourassa_style__by_owc478-d74ivzp.png"
+             alt="" height="300px"/>
+        <input type="file" id="fileinp" multiple/>
+    </div>
+    <script>
+
+        // listen for a click on the image
+        // fire a click event dispatch on the fileinp
+        // filereader to read the file data as datauri
+        // set the src of the image to reader.result
+
+        // formdata
+
+    </script>
+
+</body>
+</html>
