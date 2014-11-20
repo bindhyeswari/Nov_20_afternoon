@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/base.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="text" name="username"/>
+        <input type="text" name="email"/>
+        <input type="text" name="password"/>
+        <input type="file" name="filex"/>
+        <input type="submit" value="Create User"/>
+    </form>
+  </body>
+</html>
