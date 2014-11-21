@@ -28,11 +28,11 @@
 </head>
 <body>
 
-    <div class="profile">
+    <div class="profile" id="profile">
         <div class="mask">
-            <progress max="100" value="25"></progress>
+            <progress max="100" value="25" id="progressbar"></progress>
         </div>
-        <img src="http://fc01.deviantart.net/fs71/i/2014/261/4/a/earth_2_superman__bourassa_style__by_owc478-d74ivzp.png"
+        <img id="profilepic" src="http://fc01.deviantart.net/fs71/i/2014/261/4/a/earth_2_superman__bourassa_style__by_owc478-d74ivzp.png"
              alt="" height="300px"/>
         <input type="file" id="fileinp" multiple/>
     </div>
@@ -44,6 +44,51 @@
         // set the src of the image to reader.result
 
         // formdata
+
+        var profilediv = document.getElementById('profile');
+        var img = document.getElementById('profilepic');
+        var fileinp = document.getElementById('fileinp');
+        var progressbar = document.getElementById('progressbar');
+
+        profilediv.addEventListener('click', function () {
+            // listen for a click on the profile
+            // fire a click on the input type file
+            fileinp.click();
+        });
+
+        fileinp.addEventListener('change', function () {
+            var filereader = new FileReader();
+            filereader.addEventListener('loadend', function () {
+                img.src = filereader.result;
+
+                var formdata = new FormData();
+                formdata.append('uploader', 'BP');
+                formdata.append(fileinp.files[0].name, fileinp.files[0]);
+
+                var xhr = new XMLHttpRequest();
+
+                // xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+                xhr.addEventListener('readystatechange', function () {
+                    if( xhr.readyState === 4 && xhr.status === 200 ) {
+                        var obj = JSON.parse(xhr.responseText);
+                        console.log(obj);
+                    }
+                });
+                xhr.upload.addEventListener('progress', function (e) {
+                    console.log(e.loaded);
+                    progressbar.setAttribute('value', Math.round(e.loaded / e.total * 100));
+                });
+                xhr.open('POST', '/upload');
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.send(formdata);
+            });
+            filereader.readAsDataURL(fileinp.files[0]);
+        });
+
+
+
+
+
 
     </script>
 
